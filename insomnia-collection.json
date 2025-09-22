@@ -1,0 +1,518 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2024-01-01T00:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v2023.5.8",
+  "resources": [
+    {
+      "_id": "req_health_check",
+      "parentId": "fld_estoque_escoteiro",
+      "modified": 1704067200000,
+      "created": 1704067200000,
+      "url": "{{ _.base_url }}/",
+      "name": "Health Check",
+      "description": "Verifica se a API está funcionando",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1704067200000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_criar_item",
+      "parentId": "fld_estoque_escoteiro",
+      "modified": 1704067200000,
+      "created": 1704067200000,
+      "url": "{{ _.base_url }}/api/v1/itens",
+      "name": "Criar Item",
+      "description": "Cria um novo item no estoque",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"tipo\": \"Distintivo de Especialidade\",\n  \"nivel\": \"Nível 1\",\n  \"descricao\": \"Teste API\",\n  \"quantidade\": 5,\n  \"valorUnitario\": 2.50,\n  \"ramo\": \"Jovens\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1704067100000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_listar_itens",
+      "parentId": "fld_estoque_escoteiro",
+      "modified": 1704067200000,
+      "created": 1704067200000,
+      "url": "{{ _.base_url }}/api/v1/itens",
+      "name": "Listar Todos os Itens",
+      "description": "Lista todos os itens do estoque",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1704067000000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_listar_paginacao",
+      "parentId": "fld_estoque_escoteiro",
+      "modified": 1704067200000,
+      "created": 1704067200000,
+      "url": "{{ _.base_url }}/api/v1/itens",
+      "name": "Listar com Paginação",
+      "description": "Lista itens com paginação",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "page",
+          "value": "1"
+        },
+        {
+          "name": "limit",
+          "value": "10"
+        }
+      ],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1704066900000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_filtrar_tipo",
+      "parentId": "fld_estoque_escoteiro",
+      "modified": 1704067200000,
+      "created": 1704067200000,
+      "url": "{{ _.base_url }}/api/v1/itens",
+      "name": "Filtrar por Tipo",
+      "description": "Filtra itens por tipo",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "tipo",
+          "value": "Distintivo de Especialidade"
+        }
+      ],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1704066800000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_filtrar_ramo",
+      "parentId": "fld_estoque_escoteiro",
+      "modified": 1704067200000,
+      "created": 1704067200000,
+      "url": "{{ _.base_url }}/api/v1/itens",
+      "name": "Filtrar por Ramo",
+      "description": "Filtra itens por ramo",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "ramo",
+          "value": "Jovens"
+        }
+      ],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1704066700000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_filtrar_nivel",
+      "parentId": "fld_estoque_escoteiro",
+      "modified": 1704067200000,
+      "created": 1704067200000,
+      "url": "{{ _.base_url }}/api/v1/itens",
+      "name": "Filtrar por Nível",
+      "description": "Filtra itens por nível",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "nivel",
+          "value": "Nível 1"
+        }
+      ],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1704066600000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_filtros_combinados",
+      "parentId": "fld_estoque_escoteiro",
+      "modified": 1704067200000,
+      "created": 1704067200000,
+      "url": "{{ _.base_url }}/api/v1/itens",
+      "name": "Filtros Combinados",
+      "description": "Aplica múltiplos filtros",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "tipo",
+          "value": "Distintivo"
+        },
+        {
+          "name": "ramo",
+          "value": "Jovens"
+        },
+        {
+          "name": "page",
+          "value": "1"
+        },
+        {
+          "name": "limit",
+          "value": "10"
+        }
+      ],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1704066500000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_buscar_por_id",
+      "parentId": "fld_estoque_escoteiro",
+      "modified": 1704067200000,
+      "created": 1704067200000,
+      "url": "{{ _.base_url }}/api/v1/itens/{{ _.item_id }}",
+      "name": "Buscar Item por ID",
+      "description": "Busca um item específico pelo ID",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1704066400000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_atualizar_item",
+      "parentId": "fld_estoque_escoteiro",
+      "modified": 1704067200000,
+      "created": 1704067200000,
+      "url": "{{ _.base_url }}/api/v1/itens/{{ _.item_id }}",
+      "name": "Atualizar Item Completo",
+      "description": "Atualiza todos os campos de um item",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"tipo\": \"Distintivo de Especialidade\",\n  \"nivel\": \"Nível 2\",\n  \"descricao\": \"Teste API Atualizado\",\n  \"quantidade\": 10,\n  \"valorUnitario\": 3.00,\n  \"ramo\": \"Sênior\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1704066300000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_atualizar_parcial",
+      "parentId": "fld_estoque_escoteiro",
+      "modified": 1704067200000,
+      "created": 1704067200000,
+      "url": "{{ _.base_url }}/api/v1/itens/{{ _.item_id }}",
+      "name": "Atualizar Parcial",
+      "description": "Atualiza apenas alguns campos do item",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"quantidade\": 15,\n  \"valorUnitario\": 4.50\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1704066200000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_deletar_item",
+      "parentId": "fld_estoque_escoteiro",
+      "modified": 1704067200000,
+      "created": 1704067200000,
+      "url": "{{ _.base_url }}/api/v1/itens/{{ _.item_id }}",
+      "name": "Deletar Item",
+      "description": "Remove um item do estoque",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1704066100000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_criar_distintivo",
+      "parentId": "fld_exemplos",
+      "modified": 1704067200000,
+      "created": 1704067200000,
+      "url": "{{ _.base_url }}/api/v1/itens",
+      "name": "Criar Distintivo de Especialidade",
+      "description": "Exemplo com dados reais",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"tipo\": \"Distintivo de Especialidade\",\n  \"nivel\": \"Nível 3\",\n  \"descricao\": \"Escalada\",\n  \"quantidade\": 8,\n  \"valorUnitario\": 1.40,\n  \"ramo\": \"Jovens\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1704066000000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_criar_certificado",
+      "parentId": "fld_exemplos",
+      "modified": 1704067200000,
+      "created": 1704067200000,
+      "url": "{{ _.base_url }}/api/v1/itens",
+      "name": "Criar Certificado",
+      "description": "Exemplo de certificado",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"tipo\": \"Certificado\",\n  \"nivel\": \"Não Tem\",\n  \"descricao\": \"Certificado de Teste\",\n  \"quantidade\": 25,\n  \"valorUnitario\": 2.00,\n  \"ramo\": \"Escoteiro\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1704065900000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_buscar_lobinho",
+      "parentId": "fld_exemplos",
+      "modified": 1704067200000,
+      "created": 1704067200000,
+      "url": "{{ _.base_url }}/api/v1/itens",
+      "name": "Buscar Itens Ramo Lobinho",
+      "description": "Lista itens do ramo Lobinho",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "ramo",
+          "value": "Lobinho"
+        },
+        {
+          "name": "limit",
+          "value": "20"
+        }
+      ],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1704065800000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "_type": "request"
+    },
+    {
+      "_id": "fld_estoque_escoteiro",
+      "parentId": "wrk_root",
+      "modified": 1704067200000,
+      "created": 1704067200000,
+      "name": "API Estoque Escoteiro",
+      "description": "Rotas principais da API",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1704067200000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_exemplos",
+      "parentId": "wrk_root",
+      "modified": 1704067200000,
+      "created": 1704067200000,
+      "name": "Exemplos com Dados Reais",
+      "description": "Exemplos práticos de uso da API",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1704066000000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_root",
+      "parentId": null,
+      "modified": 1704067200000,
+      "created": 1704067200000,
+      "name": "Sistema de Estoque Escoteiro",
+      "description": "Collection completa para testes da API",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "env_base",
+      "parentId": "wrk_root",
+      "modified": 1704067200000,
+      "created": 1704067200000,
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:3000",
+        "item_id": ""
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "base_url",
+          "item_id"
+        ]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1704067200000,
+      "_type": "environment"
+    }
+  ]
+}

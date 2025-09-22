@@ -1,0 +1,204 @@
+tipo,nivel,descricao,quantidade,valor_unitario,valor_total,ramo
+Distintivo de Especialidade,Nivel 2,Acampamento,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 1,Acampamento,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 3,Acampamento,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 1,Agricultura,10,1.40,14.00,Jovens
+Distintivo de Especialidade,Nivel 1,Anatomia Humana,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 1,Animação da Fé,3,1.40,4.20,Jovens
+Distintivo de Especialidade,Nivel 3,Animação da Fé,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 1,Aquariofilia,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 2,Aquariofilia,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 3,Aquariofilia,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 2,Arqueologia,3,1.40,4.20,Jovens
+Distintivo de Especialidade,Nivel 3,Arqueologia,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 2,Arte em Origami,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 1,Arte em Origami,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 3,Artes Cênicas,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 2,Artes Cênicas,3,1.40,4.20,Jovens
+Distintivo de Especialidade,Nivel 1,Artes Cênicas,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 2,Artes Gráficas,3,1.40,4.20,Jovens
+Distintivo de Especialidade,Nivel 1,Artes Gráficas,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 3,Artes Gráficas,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 1,Artes Marciais,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 2,Artes Marciais,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 2,Artesanato,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 1,Artesanato,4,1.40,5.60,Jovens
+Distintivo de Especialidade,Nivel 1,Astronomia,17,1.40,23.80,Jovens
+Distintivo de Especialidade,Nivel 1,Biblioteconomia,2,1.40,2.80,Jovens
+Certificado,Não Tem,Certificado de Progressão Pessoal Ramo Escoteiro,39,2.00,78.00,Escoteiro
+Certificado,Não Tem,Certificado de Progressão Pessoal Ramo Lobinho,39,2.00,78.00,Lobinho
+Certificado,Não Tem,Certificado de Progressão Pessoal Ramo Pioneiro,7,2.00,14.00,Pioneiro
+Certificado,Não Tem,Certificado de Progressão Pessoal Ramo Sênior,8,2.00,16.00,Sênior
+Certificado,Não Tem,Certificado Monitor (a) Sênior,6,2.00,12.00,Sênior
+Certificado,Não Tem,Certificado Monitor Escoteiro,13,2.00,26.00,Escoteiro
+Certificado,Não Tem,Certificado Primo (a),18,2.00,36.00,Lobinho
+Certificado,Não Tem,Certificado Segundo (a),16,2.00,32.00,Lobinho
+Certificado,Não Tem,Certificado Submonitor (a) Sênior,5,2.00,10.00,Sênior
+Distintivo de Especialidade,Nivel 2,Churrasco,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 1,Cidadania do Mundo,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 2,Cidadania do Mundo,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 2,Coleções,3,1.40,4.20,Jovens
+Distintivo de Especialidade,Nivel 1,Coleções,3,1.40,4.20,Jovens
+Distintivo de Especialidade,Nivel 3,Coleções,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 3,Confeitaria,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 1,Confeitaria,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 2,Confeitaria,1,1.40,1.40,Jovens
+Cordão,Não Tem,Cordão Vermelho e Branco,1,1.00,1.00,Escoteiro
+Distintivo de Especialidade,Nivel 2,Costura,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 1,Criação de Animais de Estimação,20,1.40,28.00,Jovens
+Distintivo de Especialidade,Nivel 2,Criação de Animais de Estimação,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 3,Criação de Animais de Estimação,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 1,Cuidados Bucais,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 1,Culinária,8,1.40,11.20,Jovens
+Distintivo de Especialidade,Nivel 2,Culinária,5,1.40,7.00,Jovens
+Distintivo de Especialidade,Nivel 3,Culinária,11,1.40,15.40,Jovens
+Distintivo de Especialidade,Nivel 2,Culinária Vegetariana,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 3,Dança,1,1.40,1.40,Jovens
+Distintivo de Progressão,Não Tem,Distintivo Azimute Ramo Sênior,15,3.90,58.50,Sênior
+Distintivo de Progressão,Não Tem,Distintivo Cacador Ramo Lobinho,10,3.90,39.00,Lobinho
+Distintivo de Progressão,Não Tem,Distintivo Conquista Ramo Sênior,14,3.90,54.60,Sênior
+Distintivo,Não Tem,Distintivo de Idiomas Deutsch,9,2.00,18.00,Todos
+Distintivo,Não Tem,Distintivo de Idiomas Inglês,1,2.00,2.00,Todos
+Distintivo,Não Tem,Distintivo de Recrutador +10,1,2.20,2.20,Todos
+Distintivo,Não Tem,Distintivo de Recrutador +15,1,2.20,2.20,Todos
+Distintivo,Não Tem,Distintivo de Recrutador +20,1,1.00,1.00,Todos
+Distintivo,Não Tem,Distintivo de Recrutador +3,3,2.20,6.60,Todos
+Distintivo,Não Tem,Distintivo de Recrutador +6,5,2.20,11.00,Todos
+Distintivo,Não Tem,Distintivo de Segundo,5,2.90,14.50,Lobinho
+Distintivo de Progressão,Não Tem,Distintivo Escalada Ramo Sênior,8,3.90,31.20,Sênior
+Distintivo,Não Tem,Distintivo Monitor Escoteiro,6,2.90,17.40,Escoteiro
+Distintivo,Não Tem,Distintivo Monitor(a) Sênior/Guia,4,2.90,11.60,Sênior
+Distintivo,Não Tem,Distintivo Numeral 1,4,1.40,5.60,Todos
+Distintivo,Não Tem,Distintivo Numeral 3,8,1.40,11.20,Todos
+Distintivo,Não Tem,Distintivo Numeral 9,8,1.40,11.20,Todos
+Distintivo de Progressão,Não Tem,Distintivo Pata-Tenra Ramo Lobinho,7,3.90,27.30,Lobinho
+Distintivo de Progressão,Não Tem,Distintivo Pistas Ramo Escoteiro,14,3.90,54.60,Escoteiro
+Distintivo,Não Tem,Distintivo Primo Lobinho,6,2.90,17.40,Lobinho
+Distintivo,Não Tem,Distintivo Promessa De Lobinho,4,3.50,14.00,Lobinho
+Distintivo,Não Tem,Distintivo Promessa Escoteira,4,3.50,14.00,Todos
+Distintivo de Progressão,Não Tem,Distintivo Rastreador Ramo Lobinho,16,3.90,62.40,Lobinho
+Distintivo,Não Tem,Distintivo Região Rio Grande do Sul,8,4.00,32.00,Todos
+Distintivo de Progressão,Não Tem,Distintivo Rumo Ramo Escoteiro,5,3.90,19.50,Escoteiro
+Distintivo de Progressão,Não Tem,Distintivo Saltador Ramo Lobinho,13,3.90,50.70,Lobinho
+Distintivo,Não Tem,Distintivo Submonitor (a) Sênior,2,2.90,5.80,Sênior
+Distintivo,Não Tem,Distintivo Submonitor Escoteiro,4,2.90,11.60,Escoteiro
+Distintivo de Progressão,Não Tem,Distintivo Travessia Ramo Escoteiro,7,3.90,27.30,Escoteiro
+Distintivo de Progressão,Não Tem,Distintivo Trilha Ramo Escoteiro,22,3.90,85.80,Escoteiro
+Distintivo de Especialidade,Nivel 1,Entomologia,3,1.40,4.20,Jovens
+Distintivo de Especialidade,Nivel 2,Entomologia,4,1.40,5.60,Jovens
+Distintivo de Especialidade,Nivel 1,Estilismo,20,1.40,28.00,Jovens
+Distintivo,Não Tem,Estrela Escoteiro N2,2,1.40,2.80,Escoteiro
+Distintivo,Não Tem,Estrela Escoteiro S/N,20,1.40,28.00,Escoteiro
+Distintivo,Não Tem,Estrela Escotista/Dirigente N10,5,1.40,7.00,Escotista
+Distintivo,Nivel 1,Estrela Escotista/Dirigente N2,7,1.40,9.80,Escotista
+Distintivo,Não Tem,Estrela Escotista/Dirigente N3,3,1.40,4.20,Escotista
+Distintivo,Não Tem,Estrela Escotista/Dirigente N5,6,1.40,8.40,Escotista
+Distintivo,Não Tem,Estrela Escotista/Dirigente S/N,3,1.40,4.20,Escotista
+Distintivo,Não Tem,Estrela Lobinho N2,20,1.40,28.00,Lobinho
+Distintivo,Não Tem,Estrela Lobinho N3,2,1.40,2.80,Lobinho
+Distintivo,Não Tem,Estrela Lobinho S/N,24,1.40,33.60,Lobinho
+Distintivo,Não Tem,Estrela Pioneiro S/N,7,1.40,9.80,Pioneiro
+Distintivo,Não Tem,Estrela Sênior S/N,9,1.40,12.60,Sênior
+Distintivo de Especialidade,Nivel 3,Estudos da Bíblia,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 1,Estudos da Bíblia,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 2,Estudos da Bíblia,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 3,Estudos Desportivos,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 1,Estudos Desportivos,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 2,Estudos Desportivos,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 2,Excursões,5,1.40,7.00,Jovens
+Distintivo de Especialidade,Nivel 3,Excursões,6,1.40,8.40,Jovens
+Distintivo de Especialidade,Nivel 1,Excursões,5,1.40,7.00,Jovens
+Distintivo de Especialidade,Nivel 3,Fogo de Conselho,5,1.40,7.00,Jovens
+Distintivo de Especialidade,Nivel 2,Fogo de Conselho,5,1.40,7.00,Jovens
+Distintivo de Especialidade,Nivel 1,Fogo de Conselho,4,1.40,5.60,Jovens
+Distintivo de Especialidade,Nivel 2,Futebol,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 1,Genealogia,19,1.40,26.60,Jovens
+Distintivo de Especialidade,Nivel 3,Genealogia,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 2,Genealogia,19,1.40,26.60,Jovens
+Distintivo de Especialidade,Nivel 3,Geografia,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 1,Geografia,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 3,Grafite,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 2,Grafite,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 3,História do Escotismo,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 2,História do Escotismo,5,1.40,7.00,Jovens
+Distintivo de Especialidade,Nivel 1,História do Escotismo,4,1.40,5.60,Jovens
+Distintivo de Especialidade,Nivel 1,História Local,20,1.40,28.00,Jovens
+Distintivo de Especialidade,Nivel 2,História Local,5,1.40,7.00,Jovens
+Distintivo de Especialidade,Nivel 3,História Mundial,4,1.40,5.60,Jovens
+Distintivo de Especialidade,Nivel 2,História Mundial,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 1,História Mundial,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 1,Informações Turisticas,20,1.40,28.00,Jovens
+Distintivo de Especialidade,Nivel 3,Informática,4,1.40,5.60,Jovens
+Distintivo,Não Tem,Insígnia da Ação Comunitária Ramo Escoteiro,2,2.50,5.00,Escoteiro
+Distintivo,Não Tem,Insígnia da Boa Ação Ramo Lobinho,7,2.50,17.50,Lobinho
+Distintivo,Não Tem,Insígnia da Lusofonia Ramo Escoteiro,1,2.50,2.50,Escoteiro
+Distintivo,Não Tem,Insígnia da Lusofonia Ramo Lobinho,1,2.50,2.50,Lobinho
+Distintivo,Não Tem,Insígnia da Lusofonia Ramo Pioneiro,1,2.50,2.50,Pioneiro
+Distintivo,Não Tem,Insígnia da Lusofonia Ramo Sênior,1,2.50,2.50,Sênior
+Distintivo de Progressão,Não Tem,Insígnia de Cidadania Azul Ramo Pioneiro,5,2.50,12.50,Pioneiro
+Distintivo,Não Tem,Insígnia do Aprender Ramo Escoteiro,2,2.50,5.00,Escoteiro
+Distintivo de Progressão,Não Tem,Insígnia do Comprometimento Amarelo Ramo Pioneiro,3,2.50,7.50,Pioneiro
+Distintivo,Não Tem,Insígnia do Cone Sul Ramo Escoteiro,11,2.50,27.50,Escoteiro
+Distintivo,Não Tem,Insígnia do Cone Sul Ramo Pioneiro,1,2.50,2.50,Pioneiro
+Distintivo,Não Tem,Insígnia do Cone Sul Ramo Sênior,1,2.50,2.50,Sênior
+Distintivo,Não Tem,Insígnia do Desafio Comunitario Ramo Sênior,1,2.50,2.50,Sênior
+Distintivo,Não Tem,Insígnia Modalidade Básica - Explorador Ramo Escoteiro,13,2.50,32.50,Escoteiro
+Distintivo,Não Tem,Insígnia Modalidade Básica Mateiro Ramo Sênior,1,2.50,2.50,Sênior
+Distintivo,Não Tem,Insígnia Mundial do Meio Ambiente Ramo Escoteiro,5,3.50,17.50,Escoteiro
+Distintivo,Não Tem,Insígnia Mundial do Meio Ambiente Ramo Lobinho,4,3.50,14.00,Lobinho
+Distintivo de Especialidade,Nivel 1,Leitura,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 1,Libras,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 2,Lides Campeiras,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 3,Meteorologia,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 1,Minhocultura,3,1.40,4.20,Jovens
+Distintivo de Especialidade,Nivel 1,Música,17,1.40,23.80,Jovens
+Distintivo de Especialidade,Nivel 3,Música,3,1.40,4.20,Jovens
+Distintivo de Especialidade,Nivel 2,Música,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 1,Natação,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 1,Nutrição,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 2,Paleontologia,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 1,Paleontologia,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 3,Paleontologia,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 3,Parkour,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 1,Pesca,3,1.40,4.20,Jovens
+Distintivo de Especialidade,Nivel 2,Pesca,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 3,Pesca,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 2,Pintura e Desenho Artístico,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 2,Pioneria,3,1.40,4.20,Jovens
+Distintivo de Especialidade,Nivel 1,Pioneria,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 3,Pioneria,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 3,Planador,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 1,Prevenção ao Crime,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 3,Prevenção ao Uso de Drogras,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 1,Prevenção ao Uso de Drogras,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 2,Prevenção ao Uso de Drogras,11,1.40,15.40,Jovens
+Distintivo de Especialidade,Nivel 2,Prevenção de Incêndio,3,1.40,4.20,Jovens
+Distintivo de Especialidade,Nivel 3,Prevenção de Incêndio,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 1,Prevenção de Incêndio,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 2,Primeiros Socorros,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 1,Primeiros Socorros,19,1.40,26.60,Jovens
+Distintivo de Especialidade,Nivel 3,Primeiros Socorros,26,1.40,36.40,Jovens
+Distintivo de Especialidade,Nivel 2,Produção Áudio Visual,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 3,Química,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 1,Rastreamento,9,1.40,12.60,Jovens
+Distintivo de Especialidade,Nivel 2,Rastreamento,5,1.40,7.00,Jovens
+Distintivo de Especialidade,Nivel 3,Segurança,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 1,Segurança,18,1.40,25.20,Jovens
+Distintivo de Especialidade,Nivel 2,Segurança,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 1,Segurança no Trânsito,4,1.40,5.60,Jovens
+Distintivo de Especialidade,Nivel 3,Sobrevivência,9,1.40,12.60,Jovens
+Distintivo de Especialidade,Nivel 2,Sobrevivência,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 1,Sobrevivência,10,1.40,14.00,Jovens
+Distintivo de Especialidade,Nivel 2,Técnicas de Sapa,3,1.40,4.20,Jovens
+Distintivo de Especialidade,Nivel 3,Técnicas de Sapa,13,1.40,18.20,Jovens
+Distintivo de Especialidade,Nivel 1,Técnicas de Sapa,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 3,Tênis,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 1,Tênis,3,1.40,4.20,Jovens
+Distintivo de Especialidade,Nivel 2,Tênis,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 2,Trabalho Voluntário,1,1.40,1.40,Jovens
+Distintivo de Especialidade,Nivel 3,Triatlo,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 2,Triatlo,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 2,Xadrez,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 3,Xadrez,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 2,Zoobotânica,2,1.40,2.80,Jovens
+Distintivo de Especialidade,Nivel 1,Zoobotânica,1,1.40,1.40,Jovens
