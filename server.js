@@ -17,9 +17,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // Rotas
 const authRoutes = require('./routes/authRoutes');
+const solicitacaoRoutes = require('./routes/solicitacaoRoutes');
 
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/itens', itemRoutes);
+app.use('/api/v1/solicitacoes', solicitacaoRoutes);
 
 // Rota de teste
 app.get('/', (req, res) => {
@@ -46,7 +48,16 @@ app.get('/', (req, res) => {
       'GET /api/v1/itens/:id': 'Buscar item por ID (público)',
       'POST /api/v1/itens': 'Criar um novo item (auth)',
       'PUT /api/v1/itens/:id': 'Atualizar item (auth)',
-      'DELETE /api/v1/itens/:id': 'Deletar item (admin)'
+      'DELETE /api/v1/itens/:id': 'Deletar item (admin)',
+
+      // Rotas de Solicitações de Retirada
+      'POST /api/v1/solicitacoes': 'Criar solicitação de retirada (auth)',
+      'GET /api/v1/solicitacoes/minhas': 'Listar minhas solicitações (auth)',
+      'GET /api/v1/solicitacoes': 'Listar todas solicitações (admin)',
+      'GET /api/v1/solicitacoes/:id': 'Buscar solicitação por ID (auth)',
+      'PATCH /api/v1/solicitacoes/:id/confirmar-retirada': 'Confirmar retirada pelo usuário (auth)',
+      'PATCH /api/v1/solicitacoes/:id/confirmar-admin': 'Confirmar pelo admin e reduzir estoque (admin)',
+      'PATCH /api/v1/solicitacoes/:id/cancelar': 'Cancelar solicitação (auth/admin)'
     },
     permissoes: {
       'público': 'Rotas acessíveis sem autenticação',

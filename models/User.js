@@ -47,9 +47,18 @@ userSchema.pre('save', async function(next) {
   // Só faz hash se a senha foi modificada
   if (!this.isModified('senha')) return next();
 
-  // Hash da senha com custo 12
-  this.senha = await bcrypt.hash(this.senha, 12);
-  next();
+  // Verificar se a senha existe
+  if (!this.senha) {
+    return next(new Error('Senha é obrigatória'));
+  }
+
+  try {
+    // Hash da senha com custo 12
+    this.senha = await bcrypt.hash(this.senha.toString(), 12);
+    next();
+  } catch (error) {
+    next(error);
+  }
 });
 
 // Método para comparar senhas

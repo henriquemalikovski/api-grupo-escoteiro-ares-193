@@ -9,7 +9,7 @@ const signToken = (id) => {
 };
 
 // Função para criar e enviar token
-const createSendToken = (user, statusCode, res) => {
+const createSendToken = async (user, statusCode, res) => {
   const token = signToken(user._id);
 
   // Configurações do cookie JWT
@@ -25,8 +25,7 @@ const createSendToken = (user, statusCode, res) => {
   res.cookie('jwt', token, cookieOptions);
 
   // Atualizar último login
-  user.ultimoLogin = new Date();
-  user.save({ validateBeforeSave: false });
+  await User.findByIdAndUpdate(user._id, { ultimoLogin: new Date() });
 
   // Remover senha da resposta
   user.senha = undefined;
@@ -76,7 +75,7 @@ exports.registrar = async (req, res) => {
       role: userRole
     });
 
-    createSendToken(novoUsuario, 201, res);
+    await createSendToken(novoUsuario, 201, res);
   } catch (error) {
     res.status(400).json({
       sucesso: false,
@@ -118,7 +117,7 @@ exports.login = async (req, res) => {
     }
 
     // 4) Se tudo ok, enviar token para cliente
-    createSendToken(user, 200, res);
+    await createSendToken(user, 200, res);
   } catch (error) {
     res.status(500).json({
       sucesso: false,
@@ -218,7 +217,7 @@ exports.atualizarSenha = async (req, res) => {
     await user.save();
 
     // 4) Logar usuário, enviar JWT
-    createSendToken(user, 200, res);
+    await createSendToken(user, 200, res);
   } catch (error) {
     res.status(400).json({
       sucesso: false,
