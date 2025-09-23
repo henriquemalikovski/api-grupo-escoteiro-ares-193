@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
       'DELETE /api/v1/auth/usuarios/:id': 'Deletar usuário (admin)',
 
       // Rotas de Itens
-      'GET /api/v1/itens': 'Listar todos os itens (auth)',
+      'GET /api/v1/itens': 'Listar todos os itens com filtros e ordenação (auth)',
       'GET /api/v1/itens/:id': 'Buscar item por ID (auth)',
       'POST /api/v1/itens': 'Criar um novo item (admin)',
       'PUT /api/v1/itens/:id': 'Atualizar item (admin)',

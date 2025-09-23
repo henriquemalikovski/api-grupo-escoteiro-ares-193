@@ -37,7 +37,7 @@
       "created": 1695340700000,
       "url": "{{ _.base_url }}/api/v1/itens",
       "name": "Listar Itens (Autenticado)",
-      "description": "Lista todos os itens do estoque com paginação e filtros",
+      "description": "Lista todos os itens do estoque com paginação, filtros e ordenação",
       "method": "GET",
       "body": {},
       "parameters": [
@@ -65,6 +65,11 @@
           "name": "nivel",
           "value": "",
           "description": "Filtrar por nível"
+        },
+        {
+          "name": "ordenacao",
+          "value": "mais_recente",
+          "description": "Ordenação: mais_recente, mais_antigo, descricao_a_z, descricao_z_a, maior_quantidade, menor_quantidade, maior_valor, menor_valor"
         }
       ],
       "headers": [

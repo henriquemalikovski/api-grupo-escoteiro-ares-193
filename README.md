@@ -93,11 +93,28 @@ DELETE /api/v1/auth/usuarios/:id       # Deletar usuário (admin)
 
 ### **Itens do Estoque**
 ```
-GET    /api/v1/itens                   # Listar itens (auth)
+GET    /api/v1/itens                   # Listar itens com filtros e ordenação (auth)
 GET    /api/v1/itens/:id               # Buscar item (auth)
 POST   /api/v1/itens                   # Criar item (admin)
 PUT    /api/v1/itens/:id               # Atualizar item (admin)
 DELETE /api/v1/itens/:id               # Deletar item (admin)
+```
+
+#### **Parâmetros de Ordenação para GET /api/v1/itens:**
+```
+?ordenacao=mais_recente           # Mais recente (padrão)
+?ordenacao=mais_antigo           # Mais antigo
+?ordenacao=descricao_a_z         # Descrição A-Z
+?ordenacao=descricao_z_a         # Descrição Z-A
+?ordenacao=maior_quantidade      # Maior quantidade
+?ordenacao=menor_quantidade      # Menor quantidade
+?ordenacao=maior_valor           # Maior valor
+?ordenacao=menor_valor           # Menor valor
+```
+
+#### **Exemplo de uso:**
+```
+GET /api/v1/itens?page=1&limit=10&tipo=Distintivo&ordenacao=maior_quantidade
 ```
 
 ### **Solicitações de Retirada**

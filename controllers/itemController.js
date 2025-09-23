@@ -23,24 +23,55 @@ exports.criarItem = async (req, res) => {
 // Listar todos os itens
 exports.listarItens = async (req, res) => {
   try {
-    const { tipo, ramo, nivel, page = 1, limit = 10 } = req.query;
-    
+    const { tipo, ramo, nivel, page = 1, limit = 10, ordenacao = 'mais_recente' } = req.query;
+
     // Construir filtros
     const filtros = {};
     if (tipo) filtros.tipo = tipo;
     if (ramo) filtros.ramo = ramo;
     if (nivel) filtros.nivel = nivel;
-    
+
+    // Construir ordenação
+    let sortOptions = {};
+    switch (ordenacao) {
+      case 'mais_recente':
+        sortOptions = { createdAt: -1 };
+        break;
+      case 'mais_antigo':
+        sortOptions = { createdAt: 1 };
+        break;
+      case 'descricao_a_z':
+        sortOptions = { descricao: 1 };
+        break;
+      case 'descricao_z_a':
+        sortOptions = { descricao: -1 };
+        break;
+      case 'maior_quantidade':
+        sortOptions = { quantidade: -1 };
+        break;
+      case 'menor_quantidade':
+        sortOptions = { quantidade: 1 };
+        break;
+      case 'maior_valor':
+        sortOptions = { valorUnitario: -1 };
+        break;
+      case 'menor_valor':
+        sortOptions = { valorUnitario: 1 };
+        break;
+      default:
+        sortOptions = { createdAt: -1 };
+    }
+
     // Paginação
     const skip = (page - 1) * limit;
-    
+
     const itens = await Item.find(filtros)
       .skip(skip)
       .limit(parseInt(limit))
-      .sort({ createdAt: -1 });
-    
+      .sort(sortOptions);
+
     const total = await Item.countDocuments(filtros);
-    
+
     res.status(200).json({
       sucesso: true,
       data: itens,
@@ -49,7 +80,8 @@ exports.listarItens = async (req, res) => {
         totalPaginas: Math.ceil(total / limit),
         totalItens: total,
         itensPorPagina: parseInt(limit)
-      }
+      },
+      ordenacao: ordenacao
     });
   } catch (error) {
     res.status(500).json({
