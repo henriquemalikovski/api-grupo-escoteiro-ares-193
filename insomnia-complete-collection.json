@@ -327,7 +327,7 @@
       "modified": 1704067200000,
       "created": 1704067200000,
       "url": "{{ _.base_url }}/api/v1/itens",
-      "name": "Criar Item (Autenticado)",
+      "name": "Criar Item (Admin)",
       "description": "Cria item - requer autenticação",
       "method": "POST",
       "body": {
@@ -360,7 +360,7 @@
       "modified": 1704067200000,
       "created": 1704067200000,
       "url": "{{ _.base_url }}/api/v1/itens/{{ _.item_id }}",
-      "name": "Atualizar Item (Autenticado)",
+      "name": "Atualizar Item (Admin)",
       "description": "Atualiza item - requer autenticação",
       "method": "PUT",
       "body": {

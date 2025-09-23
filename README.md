@@ -95,8 +95,8 @@ DELETE /api/v1/auth/usuarios/:id       # Deletar usuário (admin)
 ```
 GET    /api/v1/itens                   # Listar itens (público)
 GET    /api/v1/itens/:id               # Buscar item (público)
-POST   /api/v1/itens                   # Criar item (auth)
-PUT    /api/v1/itens/:id               # Atualizar item (auth)
+POST   /api/v1/itens                   # Criar item (admin)
+PUT    /api/v1/itens/:id               # Atualizar item (admin)
 DELETE /api/v1/itens/:id               # Deletar item (admin)
 ```
 

@@ -46,8 +46,8 @@ app.get('/', (req, res) => {
       // Rotas de Itens
       'GET /api/v1/itens': 'Listar todos os itens (público)',
       'GET /api/v1/itens/:id': 'Buscar item por ID (público)',
-      'POST /api/v1/itens': 'Criar um novo item (auth)',
-      'PUT /api/v1/itens/:id': 'Atualizar item (auth)',
+      'POST /api/v1/itens': 'Criar um novo item (admin)',
+      'PUT /api/v1/itens/:id': 'Atualizar item (admin)',
       'DELETE /api/v1/itens/:id': 'Deletar item (admin)',
 
       // Rotas de Solicitações de Retirada
@@ -55,7 +55,7 @@ app.get('/', (req, res) => {
       'GET /api/v1/solicitacoes/minhas': 'Listar minhas solicitações (auth)',
       'GET /api/v1/solicitacoes': 'Listar todas solicitações (admin)',
       'GET /api/v1/solicitacoes/:id': 'Buscar solicitação por ID (auth)',
-      'PATCH /api/v1/solicitacoes/:id/confirmar-retirada': 'Confirmar retirada pelo usuário (auth)',
+      'PATCH /api/v1/solicitacoes/:id': 'Atualizar solicitação (confirmar retirada, observação) (auth)',
       'PATCH /api/v1/solicitacoes/:id/confirmar-admin': 'Confirmar pelo admin e reduzir estoque (admin)',
       'PATCH /api/v1/solicitacoes/:id/cancelar': 'Cancelar solicitação (auth/admin)'
     },
