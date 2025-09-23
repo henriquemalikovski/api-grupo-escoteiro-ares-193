@@ -4,7 +4,7 @@ const {
   listarMinhasSolicitacoes,
   listarTodasSolicitacoes,
   buscarSolicitacao,
-  confirmarRetiradaUsuario,
+  atualizarSolicitacao,
   confirmarRetiradaAdmin,
   cancelarSolicitacao
 } = require('../controllers/solicitacaoController');
@@ -26,21 +26,6 @@ router.post('/', criarSolicitacao);
 // @access  Private (Usuário Autenticado)
 router.get('/minhas', listarMinhasSolicitacoes);
 
-// @route   GET /api/v1/solicitacoes/:id
-// @desc    Buscar solicitação por ID
-// @access  Private (Usuário pode ver suas próprias, Admin vê todas)
-router.get('/:id', buscarSolicitacao);
-
-// @route   PATCH /api/v1/solicitacoes/:id/confirmar-retirada
-// @desc    Confirmar que o usuário retirou os itens
-// @access  Private (Usuário Autenticado - apenas suas próprias)
-router.patch('/:id/confirmar-retirada', confirmarRetiradaUsuario);
-
-// @route   PATCH /api/v1/solicitacoes/:id/cancelar
-// @desc    Cancelar solicitação
-// @access  Private (Usuário pode cancelar suas próprias, Admin cancela qualquer uma)
-router.patch('/:id/cancelar', cancelarSolicitacao);
-
 // ROTAS ADMINISTRATIVAS
 
 // @route   GET /api/v1/solicitacoes
@@ -48,9 +33,24 @@ router.patch('/:id/cancelar', cancelarSolicitacao);
 // @access  Private (Admin)
 router.get('/', restringirPara('admin'), listarTodasSolicitacoes);
 
+// @route   PATCH /api/v1/solicitacoes/:id/cancelar
+// @desc    Cancelar solicitação
+// @access  Private (Usuário pode cancelar suas próprias, Admin cancela qualquer uma)
+router.patch('/:id/cancelar', cancelarSolicitacao);
+
 // @route   PATCH /api/v1/solicitacoes/:id/confirmar-admin
 // @desc    Confirmar retirada pelo admin e reduzir estoque automaticamente
 // @access  Private (Admin)
 router.patch('/:id/confirmar-admin', restringirPara('admin'), confirmarRetiradaAdmin);
+
+// @route   GET /api/v1/solicitacoes/:id
+// @desc    Buscar solicitação por ID
+// @access  Private (Usuário pode ver suas próprias, Admin vê todas)
+router.get('/:id', buscarSolicitacao);
+
+// @route   PATCH /api/v1/solicitacoes/:id
+// @desc    Atualizar solicitação (incluindo confirmação de retirada)
+// @access  Private (Usuário Autenticado - apenas suas próprias)
+router.patch('/:id', atualizarSolicitacao);
 
 module.exports = router;

@@ -428,7 +428,7 @@
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"itens\": [\n    {\n      \"item\": \"{{ _.item_id }}\",\n      \"quantidade\": 2,\n      \"observacao\": \"Preciso deste item para atividade escoteira\"\n    }\n  ]\n}"
+        "text": "{\n  \"itens\": [\n    {\n      \"item\": \"{{ _.item_id }}\",\n      \"quantidade\": 2,\n      \"observacao\": \"Preciso deste item para atividade escoteira\"\n    }\n  ],\n  \"retiradaConfirmadaPeloUsuario\": false,\n  \"observacao\": \"Solicitação para atividade do grupo\"\n}"
       },
       "parameters": [],
       "headers": [
@@ -527,15 +527,18 @@
       "_type": "request"
     },
     {
-      "_id": "req_confirmar_retirada_usuario",
+      "_id": "req_atualizar_solicitacao",
       "parentId": "fld_solicitacoes",
       "modified": 1695340200000,
       "created": 1695340200000,
-      "url": "{{ _.base_url }}/api/v1/solicitacoes/{{ _.solicitacao_id }}/confirmar-retirada",
-      "name": "Confirmar Retirada (Usuário)",
-      "description": "Usuário confirma que pegou os itens no estoque",
+      "url": "{{ _.base_url }}/api/v1/solicitacoes/{{ _.solicitacao_id }}",
+      "name": "Atualizar Solicitação",
+      "description": "Atualiza solicitação (incluindo confirmação de retirada pelo usuário)",
       "method": "PATCH",
-      "body": {},
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"retiradaConfirmadaPeloUsuario\": true,\n  \"observacao\": \"Observação atualizada\"\n}"
+      },
       "parameters": [],
       "headers": [
         {

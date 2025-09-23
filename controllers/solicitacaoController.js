@@ -7,7 +7,7 @@ const AppError = require('../utils/appError');
 // @route   POST /api/v1/solicitacoes
 // @access  Private (Usuário Autenticado)
 exports.criarSolicitacao = asyncHandler(async (req, res, next) => {
-  const { itens, observacao } = req.body;
+  const { itens, observacao, retiradaConfirmadaPeloUsuario } = req.body;
 
   if (!itens || !Array.isArray(itens) || itens.length === 0) {
     return next(new AppError('É necessário informar pelo menos um item', 400));
@@ -29,7 +29,8 @@ exports.criarSolicitacao = asyncHandler(async (req, res, next) => {
   const solicitacao = await SolicitacaoRetirada.create({
     usuario: req.user.id,
     itens,
-    observacao
+    observacao,
+    retiradaConfirmadaPeloUsuario: retiradaConfirmadaPeloUsuario || false
   });
 
   // Carregar dados completos para resposta
@@ -142,45 +143,71 @@ exports.buscarSolicitacao = asyncHandler(async (req, res, next) => {
   });
 });
 
-// @desc    Confirmar retirada pelo usuário
-// @route   PATCH /api/v1/solicitacoes/:id/confirmar-retirada
-// @access  Private (Usuário Autenticado)
-exports.confirmarRetiradaUsuario = asyncHandler(async (req, res, next) => {
+// @desc    Atualizar solicitação de retirada
+// @route   PATCH /api/v1/solicitacoes/:id
+// @access  Private (Usuário Autenticado - apenas suas próprias)
+exports.atualizarSolicitacao = asyncHandler(async (req, res, next) => {
+  const { retiradaConfirmadaPeloUsuario, observacao } = req.body;
+
   const solicitacao = await SolicitacaoRetirada.findById(req.params.id);
 
   if (!solicitacao) {
     return next(new AppError('Solicitação não encontrada', 404));
   }
 
-  // Verificar se é o usuário da solicitação
-  if (solicitacao.usuario.toString() !== req.user.id) {
+  // Verificar se é o usuário da solicitação ou admin
+  const isOwner = solicitacao.usuario.toString() === req.user.id;
+  const isAdmin = req.user.role === 'admin';
+
+  if (!isOwner && !isAdmin) {
     return next(new AppError('Acesso negado', 403));
   }
 
-  // Verificar se pode confirmar
-  if (solicitacao.status !== 'pendente') {
-    return next(new AppError('Solicitação não pode ser confirmada neste status', 400));
+  // Verificar se ainda pode ser atualizada
+  if (solicitacao.status === 'confirmada_admin') {
+    return next(new AppError('Solicitação já foi confirmada pelo admin e não pode ser alterada', 400));
   }
 
-  // Verificar disponibilidade antes de confirmar
-  await solicitacao.populate('itens.item');
-  const indisponiveis = await solicitacao.verificarDisponibilidade();
-
-  if (indisponiveis.length > 0) {
-    return next(new AppError('Alguns itens não possuem estoque suficiente', 400));
+  if (solicitacao.status === 'cancelada') {
+    return next(new AppError('Solicitação cancelada não pode ser alterada', 400));
   }
 
-  solicitacao.retiradaConfirmadaPeloUsuario = true;
+  // Atualizar campos permitidos
+  if (observacao !== undefined) {
+    solicitacao.observacao = observacao;
+  }
+
+  if (retiradaConfirmadaPeloUsuario !== undefined) {
+    // Verificar disponibilidade antes de confirmar retirada
+    if (retiradaConfirmadaPeloUsuario && !solicitacao.retiradaConfirmadaPeloUsuario) {
+      await solicitacao.populate('itens.item');
+      const indisponiveis = await solicitacao.verificarDisponibilidade();
+
+      if (indisponiveis.length > 0) {
+        return next(new AppError('Alguns itens não possuem estoque suficiente', 400));
+      }
+    }
+
+    solicitacao.retiradaConfirmadaPeloUsuario = retiradaConfirmadaPeloUsuario;
+  }
+
   await solicitacao.save();
 
+  // Carregar dados completos para resposta
   await solicitacao.populate([
     { path: 'usuario', select: 'nome email grupoEscoteiro' },
-    { path: 'itens.item', select: 'tipo descricao valorUnitario quantidade ramo nivel' }
+    { path: 'itens.item', select: 'tipo descricao valorUnitario quantidade ramo nivel' },
+    { path: 'adminConfirmacao', select: 'nome email' }
   ]);
+
+  const valorTotal = await solicitacao.calcularValorTotal();
 
   res.status(200).json({
     sucesso: true,
-    data: { solicitacao }
+    data: {
+      solicitacao,
+      valorTotal
+    }
   });
 });
 

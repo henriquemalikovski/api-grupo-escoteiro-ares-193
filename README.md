@@ -106,7 +106,7 @@ POST   /api/v1/solicitacoes                            # Criar solicitação (au
 GET    /api/v1/solicitacoes/minhas                     # Listar minhas solicitações (auth)
 GET    /api/v1/solicitacoes                            # Listar todas solicitações (admin)
 GET    /api/v1/solicitacoes/:id                        # Buscar solicitação por ID (auth)
-PATCH  /api/v1/solicitacoes/:id/confirmar-retirada     # Confirmar retirada pelo usuário (auth)
+PATCH  /api/v1/solicitacoes/:id                        # Atualizar solicitação (confirmar retirada, observação) (auth)
 PATCH  /api/v1/solicitacoes/:id/confirmar-admin        # Confirmar pelo admin e reduzir estoque (admin)
 PATCH  /api/v1/solicitacoes/:id/cancelar               # Cancelar solicitação (auth/admin)
 ```
@@ -170,7 +170,18 @@ POST /api/v1/solicitacoes
       "quantidade": 2,
       "observacao": "Preciso deste item para atividade"
     }
-  ]
+  ],
+  "retiradaConfirmadaPeloUsuario": false,
+  "observacao": "Solicitação para atividade do grupo"
+}
+```
+
+### **Atualizar Solicitação (Confirmar Retirada):**
+```json
+PATCH /api/v1/solicitacoes/ID_DA_SOLICITACAO
+{
+  "retiradaConfirmadaPeloUsuario": true,
+  "observacao": "Confirmando que peguei os itens"
 }
 ```
 
@@ -181,8 +192,8 @@ POST /api/v1/solicitacoes
 - `cancelada` - Solicitação cancelada
 
 ### **Fluxo Completo:**
-1. Usuário cria solicitação → **pendente**
-2. Usuário confirma retirada → **retirada_usuario**
+1. Usuário cria solicitação (com `retiradaConfirmadaPeloUsuario: false`) → **pendente**
+2. Usuário atualiza solicitação (com `retiradaConfirmadaPeloUsuario: true`) → **retirada_usuario**
 3. Admin confirma → **confirmada_admin** (estoque reduzido automaticamente)
 
 ## 👥 Autor
