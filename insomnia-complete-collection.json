@@ -44,7 +44,7 @@
         {
           "name": "page",
           "value": "1",
-          "description": "Página atual"
+          "description": "Página atual "
         },
         {
           "name": "limit",
