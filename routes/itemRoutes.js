@@ -3,15 +3,17 @@ const router = express.Router();
 const itemController = require('../controllers/itemController');
 const { protegerRota, restringirPara, authOpcional } = require('../middleware/auth');
 
-// Rotas que podem ser acessadas com ou sem autenticação
-// GET /api/itens - Listar todos os itens (com filtros e paginação)
-router.get('/', authOpcional, itemController.listarItens);
+// Rotas que precisam de autenticação
+router.use(protegerRota); // Middleware aplicado a todas as rotas abaixo
 
-// GET /api/itens/:id - Buscar item por ID
-router.get('/:id', authOpcional, itemController.buscarItemPorId);
+// GET /api/itens - Listar todos os itens (usuário autenticado)
+router.get('/', itemController.listarItens);
+
+// GET /api/itens/:id - Buscar item por ID (usuário autenticado)
+router.get('/:id', itemController.buscarItemPorId);
 
 // Rotas apenas para administradores
-router.use(protegerRota, restringirPara('admin')); // Middleware aplicado a todas as rotas abaixo
+router.use(restringirPara('admin')); // Middleware aplicado a todas as rotas abaixo
 
 // POST /api/itens - Criar um novo item (apenas admin)
 router.post('/', itemController.criarItem);
