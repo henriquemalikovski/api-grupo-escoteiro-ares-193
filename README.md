@@ -100,19 +100,36 @@ PUT    /api/v1/itens/:id               # Atualizar item (auth)
 DELETE /api/v1/itens/:id               # Deletar item (admin)
 ```
 
+### **Solicitações de Retirada**
+```
+POST   /api/v1/solicitacoes                            # Criar solicitação (auth)
+GET    /api/v1/solicitacoes/minhas                     # Listar minhas solicitações (auth)
+GET    /api/v1/solicitacoes                            # Listar todas solicitações (admin)
+GET    /api/v1/solicitacoes/:id                        # Buscar solicitação por ID (auth)
+PATCH  /api/v1/solicitacoes/:id/confirmar-retirada     # Confirmar retirada pelo usuário (auth)
+PATCH  /api/v1/solicitacoes/:id/confirmar-admin        # Confirmar pelo admin e reduzir estoque (admin)
+PATCH  /api/v1/solicitacoes/:id/cancelar               # Cancelar solicitação (auth/admin)
+```
+
 ## 🧪 Testando a API
 
 ### **Insomnia/Postman**
-1. Importe a collection `insomnia-auth-collection.json`
+1. Importe a collection `insomnia-complete-collection.json`
 2. Configure as variáveis:
    - `base_url`: `http://localhost:3000`
    - `access_token`: (obtido após login)
+   - `item_id`: (ID de um item para testes)
+   - `user_id`: (ID de um usuário para testes admin)
+   - `solicitacao_id`: (ID de uma solicitação para testes)
 
 ### **Fluxo de Teste:**
 1. **Registrar** um usuário
 2. **Login** para obter token
 3. **Copiar token** para `access_token`
 4. **Testar rotas protegidas**
+5. **Criar solicitação de retirada**
+6. **Confirmar retirada como usuário**
+7. **Confirmar como admin** (reduz estoque automaticamente)
 
 ## 🔑 Autenticação
 
@@ -140,6 +157,33 @@ POST /api/v1/auth/login
 ```
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 ```
+
+## 🔄 **Sistema de Solicitações de Retirada**
+
+### **Criar Solicitação:**
+```json
+POST /api/v1/solicitacoes
+{
+  "itens": [
+    {
+      "item": "ID_DO_ITEM",
+      "quantidade": 2,
+      "observacao": "Preciso deste item para atividade"
+    }
+  ]
+}
+```
+
+### **Estados da Solicitação:**
+- `pendente` - Aguardando usuário confirmar retirada
+- `retirada_usuario` - Usuário confirmou que pegou os itens
+- `confirmada_admin` - Admin confirmou e estoque foi reduzido automaticamente
+- `cancelada` - Solicitação cancelada
+
+### **Fluxo Completo:**
+1. Usuário cria solicitação → **pendente**
+2. Usuário confirma retirada → **retirada_usuario**
+3. Admin confirma → **confirmada_admin** (estoque reduzido automaticamente)
 
 ## 👥 Autor
 
