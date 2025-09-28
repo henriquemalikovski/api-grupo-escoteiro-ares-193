@@ -18,10 +18,12 @@ app.use(express.urlencoded({ extended: true }));
 // Rotas
 const authRoutes = require('./routes/authRoutes');
 const solicitacaoRoutes = require('./routes/solicitacaoRoutes');
+const solicitacaoCompraRoutes = require('./routes/solicitacaoCompraRoutes');
 
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/itens', itemRoutes);
 app.use('/api/v1/solicitacoes', solicitacaoRoutes);
+app.use('/api/v1/solicitacoes-compra', solicitacaoCompraRoutes);
 
 // Rota de teste
 app.get('/', (req, res) => {
@@ -57,7 +59,18 @@ app.get('/', (req, res) => {
       'GET /api/v1/solicitacoes/:id': 'Buscar solicitação por ID (auth)',
       'PATCH /api/v1/solicitacoes/:id': 'Atualizar solicitação (confirmar retirada, observação) (auth)',
       'PATCH /api/v1/solicitacoes/:id/confirmar-admin': 'Confirmar pelo admin e reduzir estoque (admin)',
-      'PATCH /api/v1/solicitacoes/:id/cancelar': 'Cancelar solicitação (auth/admin)'
+      'PATCH /api/v1/solicitacoes/:id/cancelar': 'Cancelar solicitação (auth/admin)',
+
+      // Rotas de Solicitações de Compra
+      'POST /api/v1/solicitacoes-compra': 'Criar solicitação de compra (auth)',
+      'GET /api/v1/solicitacoes-compra/minhas': 'Listar minhas solicitações de compra (auth)',
+      'GET /api/v1/solicitacoes-compra': 'Listar todas solicitações de compra (admin)',
+      'GET /api/v1/solicitacoes-compra/:id': 'Buscar solicitação de compra por ID (auth)',
+      'PATCH /api/v1/solicitacoes-compra/:id': 'Atualizar solicitação de compra (auth)',
+      'PATCH /api/v1/solicitacoes-compra/:id/aprovar': 'Aprovar solicitação de compra (admin)',
+      'PATCH /api/v1/solicitacoes-compra/:id/rejeitar': 'Rejeitar solicitação de compra (admin)',
+      'PATCH /api/v1/solicitacoes-compra/:id/marcar-comprada': 'Marcar como comprada (admin)',
+      'DELETE /api/v1/solicitacoes-compra/:id': 'Cancelar solicitação de compra (auth)'
     },
     permissoes: {
       'público': 'Rotas acessíveis sem autenticação',
