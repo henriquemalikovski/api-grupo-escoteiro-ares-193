@@ -1,16 +1,41 @@
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 const User = require('../models/User');
 
-// Função para gerar JWT
-const signToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
+// Função para gerar JWT com tokenId único
+const signToken = (id, tokenId) => {
+  return jwt.sign({ id, tokenId }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN || '90d'
   });
 };
 
+// Função para extrair informações do dispositivo
+const extrairInfoDispositivo = (req) => {
+  const userAgent = req.headers['user-agent'] || '';
+  const ip = req.ip || req.connection.remoteAddress || req.headers['x-forwarded-for'] || 'Desconhecido';
+
+  let dispositivo = 'Desconhecido';
+  let navegador = 'Desconhecido';
+
+  // Detectar dispositivo
+  if (userAgent.includes('Mobile')) dispositivo = 'Mobile';
+  else if (userAgent.includes('Tablet')) dispositivo = 'Tablet';
+  else dispositivo = 'Desktop';
+
+  // Detectar navegador
+  if (userAgent.includes('Chrome')) navegador = 'Chrome';
+  else if (userAgent.includes('Firefox')) navegador = 'Firefox';
+  else if (userAgent.includes('Safari')) navegador = 'Safari';
+  else if (userAgent.includes('Edge')) navegador = 'Edge';
+
+  return { dispositivo, navegador, ip };
+};
+
 // Função para criar e enviar token
-const createSendToken = async (user, statusCode, res) => {
-  const token = signToken(user._id);
+const createSendToken = async (user, statusCode, res, req) => {
+  // Gerar ID único para esta sessão
+  const tokenId = crypto.randomUUID();
+  const token = signToken(user._id, tokenId);
 
   // Configurações do cookie JWT
   const cookieOptions = {
@@ -24,8 +49,18 @@ const createSendToken = async (user, statusCode, res) => {
 
   res.cookie('jwt', token, cookieOptions);
 
+  // Extrair informações do dispositivo
+  const deviceInfo = extrairInfoDispositivo(req);
+
+  // Limpar sessões expiradas antes de adicionar nova
+  await user.limparSessoesExpiradas();
+
+  // Adicionar nova sessão
+  await user.adicionarSessao(tokenId, deviceInfo);
+
   // Atualizar último login
-  await User.findByIdAndUpdate(user._id, { ultimoLogin: new Date() });
+  user.ultimoLogin = new Date();
+  await user.save();
 
   // Remover senha da resposta
   user.senha = undefined;
@@ -34,7 +69,12 @@ const createSendToken = async (user, statusCode, res) => {
     sucesso: true,
     token,
     data: {
-      user
+      user,
+      sessao: {
+        tokenId,
+        ...deviceInfo,
+        criadoEm: new Date()
+      }
     }
   });
 };
@@ -75,7 +115,7 @@ exports.registrar = async (req, res) => {
       role: userRole
     });
 
-    await createSendToken(novoUsuario, 201, res);
+    await createSendToken(novoUsuario, 201, res, req);
   } catch (error) {
     res.status(400).json({
       sucesso: false,
@@ -117,7 +157,7 @@ exports.login = async (req, res) => {
     }
 
     // 4) Se tudo ok, enviar token para cliente
-    await createSendToken(user, 200, res);
+    await createSendToken(user, 200, res, req);
   } catch (error) {
     res.status(500).json({
       sucesso: false,
@@ -127,16 +167,36 @@ exports.login = async (req, res) => {
   }
 };
 
-// Logout
-exports.logout = (req, res) => {
-  res.cookie('jwt', 'loggedout', {
-    expires: new Date(Date.now() + 10 * 1000),
-    httpOnly: true
-  });
-  res.status(200).json({
-    sucesso: true,
-    mensagem: 'Logout realizado com sucesso'
-  });
+// Logout da sessão atual
+exports.logout = async (req, res) => {
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
+
+    if (token) {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const user = await User.findById(decoded.id);
+
+      if (user && decoded.tokenId) {
+        // Remover sessão específica
+        await user.removerSessao(decoded.tokenId);
+      }
+    }
+
+    res.cookie('jwt', 'loggedout', {
+      expires: new Date(Date.now() + 10 * 1000),
+      httpOnly: true
+    });
+
+    res.status(200).json({
+      sucesso: true,
+      mensagem: 'Logout realizado com sucesso'
+    });
+  } catch (error) {
+    res.status(200).json({
+      sucesso: true,
+      mensagem: 'Logout realizado com sucesso'
+    });
+  }
 };
 
 // Obter perfil do usuário atual
@@ -217,7 +277,7 @@ exports.atualizarSenha = async (req, res) => {
     await user.save();
 
     // 4) Logar usuário, enviar JWT
-    await createSendToken(user, 200, res);
+    await createSendToken(user, 200, res, req);
   } catch (error) {
     res.status(400).json({
       sucesso: false,
@@ -374,6 +434,112 @@ exports.deletarUsuario = async (req, res) => {
     res.status(500).json({
       sucesso: false,
       mensagem: 'Erro ao deletar usuário',
+      erro: error.message
+    });
+  }
+};
+
+// Listar sessões ativas do usuário atual
+exports.listarSessoes = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+
+    // Limpar sessões expiradas
+    await user.limparSessoesExpiradas();
+
+    res.status(200).json({
+      sucesso: true,
+      data: {
+        sessoes: user.sessoesAtivas,
+        total: user.sessoesAtivas.length
+      }
+    });
+  } catch (error) {
+    res.status(500).json({
+      sucesso: false,
+      mensagem: 'Erro ao listar sessões',
+      erro: error.message
+    });
+  }
+};
+
+// Encerrar sessão específica
+exports.encerrarSessao = async (req, res) => {
+  try {
+    const { tokenId } = req.params;
+    const user = await User.findById(req.user.id);
+
+    const sessaoExistia = user.sessoesAtivas.some(s => s.tokenId === tokenId);
+
+    if (!sessaoExistia) {
+      return res.status(404).json({
+        sucesso: false,
+        mensagem: 'Sessão não encontrada'
+      });
+    }
+
+    await user.removerSessao(tokenId);
+
+    res.status(200).json({
+      sucesso: true,
+      mensagem: 'Sessão encerrada com sucesso'
+    });
+  } catch (error) {
+    res.status(500).json({
+      sucesso: false,
+      mensagem: 'Erro ao encerrar sessão',
+      erro: error.message
+    });
+  }
+};
+
+// Encerrar todas as outras sessões (manter apenas a atual)
+exports.encerrarOutrasSessoes = async (req, res) => {
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(req.user.id);
+
+    // Manter apenas a sessão atual
+    if (decoded.tokenId) {
+      user.sessoesAtivas = user.sessoesAtivas.filter(sessao =>
+        sessao.tokenId === decoded.tokenId
+      );
+      await user.save();
+    }
+
+    res.status(200).json({
+      sucesso: true,
+      mensagem: 'Outras sessões encerradas com sucesso'
+    });
+  } catch (error) {
+    res.status(500).json({
+      sucesso: false,
+      mensagem: 'Erro ao encerrar outras sessões',
+      erro: error.message
+    });
+  }
+};
+
+// Logout global - encerrar todas as sessões
+exports.logoutGlobal = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    await user.encerrarTodasSessoes();
+
+    res.cookie('jwt', 'loggedout', {
+      expires: new Date(Date.now() + 10 * 1000),
+      httpOnly: true
+    });
+
+    res.status(200).json({
+      sucesso: true,
+      mensagem: 'Logout global realizado com sucesso'
+    });
+  } catch (error) {
+    res.status(500).json({
+      sucesso: false,
+      mensagem: 'Erro ao realizar logout global',
       erro: error.message
     });
   }

@@ -37,7 +37,33 @@ const userSchema = new mongoose.Schema({
   },
   ultimoLogin: {
     type: Date
-  }
+  },
+  sessoesAtivas: [{
+    tokenId: {
+      type: String,
+      required: true
+    },
+    dispositivo: {
+      type: String,
+      default: 'Desconhecido'
+    },
+    navegador: {
+      type: String,
+      default: 'Desconhecido'
+    },
+    ip: {
+      type: String,
+      default: 'Desconhecido'
+    },
+    criadoEm: {
+      type: Date,
+      default: Date.now
+    },
+    ultimaAtividade: {
+      type: Date,
+      default: Date.now
+    }
+  }]
 }, {
   timestamps: true
 });
@@ -73,6 +99,59 @@ userSchema.methods.mudouSenhaDepoisToken = function(JWTTimestamp) {
     return JWTTimestamp < changedTimestamp;
   }
   return false;
+};
+
+// Método para adicionar nova sessão
+userSchema.methods.adicionarSessao = function(tokenId, deviceInfo = {}) {
+  const novaSessao = {
+    tokenId,
+    dispositivo: deviceInfo.dispositivo || 'Desconhecido',
+    navegador: deviceInfo.navegador || 'Desconhecido',
+    ip: deviceInfo.ip || 'Desconhecido',
+    criadoEm: new Date(),
+    ultimaAtividade: new Date()
+  };
+
+  this.sessoesAtivas.push(novaSessao);
+  return this.save();
+};
+
+// Método para remover sessão específica
+userSchema.methods.removerSessao = function(tokenId) {
+  this.sessoesAtivas = this.sessoesAtivas.filter(sessao => sessao.tokenId !== tokenId);
+  return this.save();
+};
+
+// Método para verificar se sessão é válida
+userSchema.methods.sessaoValida = function(tokenId) {
+  return this.sessoesAtivas.some(sessao => sessao.tokenId === tokenId);
+};
+
+// Método para atualizar última atividade da sessão
+userSchema.methods.atualizarAtividadeSessao = function(tokenId) {
+  const sessao = this.sessoesAtivas.find(s => s.tokenId === tokenId);
+  if (sessao) {
+    sessao.ultimaAtividade = new Date();
+    return this.save();
+  }
+};
+
+// Método para limpar sessões expiradas (mais de 90 dias sem atividade)
+userSchema.methods.limparSessoesExpiradas = function() {
+  const agora = new Date();
+  const limite = new Date(agora.getTime() - 90 * 24 * 60 * 60 * 1000); // 90 dias
+
+  this.sessoesAtivas = this.sessoesAtivas.filter(sessao =>
+    sessao.ultimaAtividade > limite
+  );
+
+  return this.save();
+};
+
+// Método para encerrar todas as sessões (útil para logout global)
+userSchema.methods.encerrarTodasSessoes = function() {
+  this.sessoesAtivas = [];
+  return this.save();
 };
 
 // Método toJSON para remover campos sensíveis

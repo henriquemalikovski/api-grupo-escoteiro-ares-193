@@ -45,6 +45,19 @@ const protegerRota = async (req, res, next) => {
       });
     }
 
+    // 6) Verificar se a sessão ainda é válida (se tokenId existe no JWT)
+    if (decoded.tokenId && !currentUser.sessaoValida(decoded.tokenId)) {
+      return res.status(401).json({
+        sucesso: false,
+        mensagem: 'Sessão inválida ou expirada. Por favor faça login novamente.'
+      });
+    }
+
+    // 7) Atualizar última atividade da sessão
+    if (decoded.tokenId) {
+      await currentUser.atualizarAtividadeSessao(decoded.tokenId);
+    }
+
     // CONCEDER ACESSO À ROTA PROTEGIDA
     req.user = currentUser;
     next();
@@ -95,7 +108,14 @@ const authOpcional = async (req, res, next) => {
       const currentUser = await User.findById(decoded.id);
 
       if (currentUser && currentUser.ativo && !currentUser.mudouSenhaDepoisToken(decoded.iat)) {
-        req.user = currentUser;
+        // Verificar sessão válida se tokenId existe
+        if (!decoded.tokenId || currentUser.sessaoValida(decoded.tokenId)) {
+          req.user = currentUser;
+          // Atualizar atividade se sessão válida
+          if (decoded.tokenId) {
+            currentUser.atualizarAtividadeSessao(decoded.tokenId);
+          }
+        }
       }
     }
 

@@ -17,6 +17,12 @@ router.patch('/atualizar-perfil', authController.atualizarPerfil);
 router.patch('/atualizar-senha', authController.atualizarSenha);
 router.delete('/desativar-conta', authController.desativarConta);
 
+// Rotas de gerenciamento de sessões
+router.get('/sessoes', authController.listarSessoes);
+router.delete('/sessoes/:tokenId', authController.encerrarSessao);
+router.post('/logout-outras-sessoes', authController.encerrarOutrasSessoes);
+router.post('/logout-global', authController.logoutGlobal);
+
 // Rotas apenas para administradores
 router.use(restringirPara('admin')); // Middleware aplicado a todas as rotas abaixo
 
