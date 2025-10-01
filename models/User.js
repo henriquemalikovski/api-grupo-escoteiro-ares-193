@@ -38,6 +38,9 @@ const userSchema = new mongoose.Schema({
   ultimoLogin: {
     type: Date
   },
+  senhaAlteradaEm: {
+    type: Date
+  },
   sessoesAtivas: [{
     tokenId: {
       type: String,
@@ -81,6 +84,10 @@ userSchema.pre('save', async function(next) {
   try {
     // Hash da senha com custo 12
     this.senha = await bcrypt.hash(this.senha.toString(), 12);
+
+    // Registrar quando a senha foi alterada
+    this.senhaAlteradaEm = Date.now() - 1000; // Subtrair 1s para garantir que o token seja criado depois
+
     next();
   } catch (error) {
     next(error);
@@ -94,8 +101,8 @@ userSchema.methods.compararSenha = async function(senhaCandidata) {
 
 // Método para verificar se usuário mudou senha depois do JWT ser criado
 userSchema.methods.mudouSenhaDepoisToken = function(JWTTimestamp) {
-  if (this.updatedAt) {
-    const changedTimestamp = parseInt(this.updatedAt.getTime() / 1000, 10);
+  if (this.senhaAlteradaEm) {
+    const changedTimestamp = parseInt(this.senhaAlteradaEm.getTime() / 1000, 10);
     return JWTTimestamp < changedTimestamp;
   }
   return false;
